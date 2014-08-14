@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Last Man Standing - Football Prediction Game</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/application.css" rel="stylesheet">
@@ -31,13 +31,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Last Man Standing</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">Abodedsdfsfdut</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="">About</a></li>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="">Login</a></li>
+            <li><a href="">Register</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

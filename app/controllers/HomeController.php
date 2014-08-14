@@ -19,6 +19,10 @@ class HomeController extends BaseController {
 		return View::make('home/index');
 	}
 
+	public function showAboutPage() {
+		return View::make('home/about');
+	}
+
 	public function myAccount() {
 		return View::make('home/account');
 	}
