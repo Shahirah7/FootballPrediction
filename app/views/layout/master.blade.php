@@ -25,6 +25,13 @@
     @include('layout.partials.header')
 
     <div class="container">
+        @if(Session::get('message'))
+        <br/>
+        <div class="alert alert-info" role="alert">
+            {{ Session::get('message') }}
+        </div>
+        @endif
+
         @yield('content')
 
         @include('layout.partials.footer')

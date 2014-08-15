@@ -15,8 +15,20 @@
                 <li><a href="{{ action('HomeController@showAboutPage') }}">About</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
+                @if(Auth::check())
+                <li class="dropdown">
+                    <?php
+                        $user = Auth::user();
+                    ?>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ $user->name }} <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="{{ action('UserController@logout') }}">Logout</a></li>
+                    </ul>
+                </li>
+                @else
                 <li><a href="{{ action('UserController@login') }}">Login</a></li>
                 <li><a href="{{ action('UserController@register') }}">Register</a></li>
+                @endif
             </ul>
         </div>
     </div>

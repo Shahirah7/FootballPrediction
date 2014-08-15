@@ -23,4 +23,6 @@ Route::post('/register', 'UserController@doRegister');
 
 Route::get('/logout', 'UserController@logout');
 
-Route::get('/account', 'HomeController@myAccount');
+Route::group(array('before' => 'auth'), function() {
+	Route::get('/account', 'HomeController@myAccount');
+});
