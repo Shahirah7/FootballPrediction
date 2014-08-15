@@ -33,5 +33,14 @@ class UserController extends BaseController {
 
 	public function doRegister() {
 
+		$user = new User();
+		$user->name = Input::get('name');
+		$user->username = Input::get('username');
+		$user->email = Input::get('email');
+		$user->password = Hash::make(Input::get('password'));
+		$user->save();
+
+		return Redirect::to('login')->with('message', 'You can now login!'); 
+
 	}
 }

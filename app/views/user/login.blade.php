@@ -12,8 +12,6 @@
                     <div class="form-group">
                         {{ Form::password('password', array('class' => 'form-control', 'placeholder'=>'Password')) }}
                     </div>
-    
-                    <!-- Change this to a button or input when using this as a form -->
                     <button class="btn btn-sm btn-success">Login</button>
                 </fieldset>
             {{ Form::close() }}
