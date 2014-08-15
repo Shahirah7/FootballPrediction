@@ -3,7 +3,7 @@
 @section('content')
     <div class="starter-template">
         <h1>About</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in leo leo. Integer ac semper justo. Aenean dapibus in lorem a ullamcorper. Quisque accumsan erat diam, eu posuere turpis fringilla nec. Etiam dapibus blandit sagittis. Quisque sollicitudin, augue at tempor lobortis, ipsum neque pulvinar orci, id auctor sapien nisi quis ligula. Nam id ultrices erat.</p>
     </div>
 @stop
    
