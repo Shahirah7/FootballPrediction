@@ -41,4 +41,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasMany('UserPick');
     }
 
+    public function game()
+    {
+        return $this->belongsTo('Game');
+    }
 }

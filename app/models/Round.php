@@ -18,4 +18,10 @@ class Round extends Eloquent {
     {
         return $this->belongsTo('RoundResult');
     }
+   
+    public function game()
+    {
+        return $this->belongsTo('Game');
+    }
+
 }
