@@ -42,6 +42,8 @@ class UserController extends BaseController {
 			$user->username = Input::get('username');
 			$user->email = Input::get('email');
 			$user->password = Hash::make(Input::get('password'));
+			$user->game_id = null;
+			$user->final_round_id = null;
 			$user->save();
 
 			return Redirect::to('login')->with('message', 'You can now login!'); 
