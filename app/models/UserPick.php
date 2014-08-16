@@ -10,6 +10,11 @@ class UserPick extends Eloquent {
 	protected $table = 'user_picks';
 
 
+    public function user()
+    {
+        return $this->belongsTo('User');
+    }
+
     public function round()
     {
         return $this->belongsTo('Round');

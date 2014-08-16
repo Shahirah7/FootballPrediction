@@ -14,4 +14,10 @@ class RoundResult extends Eloquent {
         return $this->belongsTo('Round');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('User');
+    }
+
+
 }
