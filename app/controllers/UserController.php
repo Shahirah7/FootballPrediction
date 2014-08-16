@@ -14,7 +14,7 @@ class UserController extends BaseController {
 		if (Auth::attempt(array('email' => $email, 'password' => $password))) {
     		return Redirect::to('/account');
 		} else {
-			return Redirect::to('login')->with('message', 'Login details were incorrect!');
+			return Redirect::to('login')->with('errors', 'Login details were incorrect!')->withInput();
 		}
 	}
 
@@ -32,15 +32,24 @@ class UserController extends BaseController {
 	}
 
 	public function doRegister() {
+		
+		$validator = Validator::make(Input::all(), User::$rules);
 
-		$user = new User();
-		$user->name = Input::get('name');
-		$user->username = Input::get('username');
-		$user->email = Input::get('email');
-		$user->password = Hash::make(Input::get('password'));
-		$user->save();
+		if ($validator->passes()) {
 
-		return Redirect::to('login')->with('message', 'You can now login!'); 
+		    $user = new User();
+			$user->name = Input::get('name');
+			$user->username = Input::get('username');
+			$user->email = Input::get('email');
+			$user->password = Hash::make(Input::get('password'));
+			$user->save();
+
+			return Redirect::to('login')->with('message', 'You can now login!'); 
+		
+		} else {
+
+			return Redirect::to('register')->with('errors', $validator->messages())->withInput(); 
+		}
 
 	}
 }
