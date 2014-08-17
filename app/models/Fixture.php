@@ -16,12 +16,12 @@ class Fixture extends Eloquent {
 
     public function homeTeam()
     {
-        return $this->hasOne('Team');
+        return $this->belongsTo('Team');
     }
 
     public function awayTeam()
     {
-        return $this->hasOne('Team');
+        return $this->belongsTo('Team');
     }
 
 }
