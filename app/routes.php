@@ -33,8 +33,15 @@ Route::group(array('before' => 'auth'), function() {
 
 Route::group(array('before' => 'admin'), function() {
 	Route::get('/admin/dashboard', 'AdminController@dashboard');
+	Route::get('/admin/dashboard/{gameId]/{roundId}', 'AdminController@dashboard');
 
+	Route::get('/admin/create_game', 'AdminController@createGame');
+	Route::post('/admin/create_game', 'AdminController@doCreateGame');
+	Route::post('/admin/save_round_fixtures', 'AdminController@saveRoundFixtures');
+	Route::post('/admin/complete_round', 'AdminController@completeRound');
+	Route::post('/admin/toggle_predictions', 'AdminController@togglePredictions');
 
+	Route::get('/admin/ajax/get_rounds_for_game/{game_id}', 'AdminController@getRoundsForGame');
 	// Route::get('/logout', 'UserController@logout');
 });
 

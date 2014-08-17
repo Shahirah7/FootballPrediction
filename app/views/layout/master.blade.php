@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
 
-    <title>Last Man Standing - Football Prediction Game</title>
+    <title>Last Team Standing - Football Prediction Game</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/application.css" rel="stylesheet">
@@ -39,6 +39,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+
+    @yield('javascript')
 
 </body>
 </html>

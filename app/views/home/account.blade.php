@@ -52,6 +52,7 @@
   				<div class="well">
   					<h3>Choose your prediction for this round</h3>
   					@if(!$madePrediction)
+  						@if($currentRound->can_predict)
 	  					{{ Form::open(array('class' => 'form-inline', 'action' => 'GameController@makePrediction')) }}
 				    		<div class="form-group">
 	    						<label class="control-label">Make Prediction:</label>
@@ -66,6 +67,9 @@
 				    				
 				    		<button class="btn btn-sm btn-primary">Select</button>
 				    	{{ Form::close() }}
+				    	@else
+				    		<p>Predictions are closed for this round</p>
+				    	@endif
 			    	@else
 			    		<p> You have already selected a team for this round.</p>
 				    @endif
