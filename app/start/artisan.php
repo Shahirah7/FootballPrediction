@@ -11,3 +11,5 @@
 |
 */
 
+Artisan::add(new MakeGameCommand);
+Artisan::add(new CompleteRoundCommand);
