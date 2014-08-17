@@ -55,6 +55,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     		->where('user_id', '=', $this->id)
     		->where('round_id', '=', $roundId)
     		->lists('team_id');
-    	return DB::table('teams')->whereNotIn('id', $teamsAlreadyPicked)->get();
+
+    	if(count($teamsAlreadyPicked)) {
+    		return DB::table('teams')->whereNotIn('id', $teamsAlreadyPicked)->get();
+    	} else {
+    		return Team::all();
+    	}
+
     }
 }
