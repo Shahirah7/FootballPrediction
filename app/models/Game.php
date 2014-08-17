@@ -19,6 +19,11 @@ class Game extends Eloquent {
         return $this->hasMany('Round');
     }
 
+    public function userPicks()
+    {
+        return $this->hasMany('UserPick');
+    }
+
     public function getNumberOfPlayers() {
     	return DB::table('users')->where('game_id', '=', $this->id)->count();
     }

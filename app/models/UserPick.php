@@ -20,6 +20,10 @@ class UserPick extends Eloquent {
         return $this->belongsTo('Round');
     }
 
+    public function game()
+    {
+        return $this->belongsTo('Game');
+    }
 
     public function team()
     {
