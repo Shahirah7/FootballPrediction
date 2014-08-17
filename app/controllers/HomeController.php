@@ -24,7 +24,30 @@ class HomeController extends BaseController {
 	}
 
 	public function myAccount() {
-		return View::make('home/account');
+
+		$user = Auth::user();
+		$games = Game::all();
+
+		$currentGame = $currentGamePlayers = $currentRound = 
+			$upcomingFixtures = $availableTeams = null;
+
+		if($user->game_id) {
+			$currentGame 		= $user->game()->first();
+			$currentGamePlayers = $currentGame->users()->getResults();
+			$currentRound 		= $currentGame->getCurrentRound();
+			$upcomingFixtures 	= Fixture::where('round_id', '=', $currentRound->id)->get();
+			$availableTeams     = $user->getAvailableTeamsForRound($currentRound->id);
+		}
+
+		return View::make('home/account', array(
+			'games' 			 => $games,
+			'currentGame'		 => $currentGame,
+			'currentGamePlayers' => $currentGamePlayers,
+			'currentRound'		 => $currentRound,
+			'upcomingFixtures'	 => $upcomingFixtures,
+			'user'				 => $user,
+			'availableTeams'	 => $availableTeams
+		));
 	}
 
 }
