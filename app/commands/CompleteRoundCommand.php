@@ -37,7 +37,43 @@ class CompleteRoundCommand extends Command {
 	 */
 	public function fire()
 	{
-		//
+		$gameId    = $this->argument('game_id');
+		$roundId  = $this->argument('round_id');
+
+		$winningTeamIds = array();
+
+		$fixtures = Fixture::where('round_id', '=', $roundId)->get();
+		foreach($fixtures as $fixture) {
+			if($fixture->home_team_score > $fixture->away_team_score) {
+				$winningTeamIds[] = $fixture->home_team_id;
+			}
+			if($fixture->away_team_score > $fixture->home_team_score) {
+				$winningTeamIds[] = $fixture->away_team_id;
+			}
+		}
+
+		// compute round results,
+		$userPicks = UserPick::where('round_id', '=', $roundId)->get();
+		foreach($userPicks as $pick) {
+			$user = User::find($pick->user_id);
+
+			$roundResult = new RoundResult();
+			$roundResult->round_id = $roundId;
+			$roundResult->user_id = $pick->user_id;
+			if(in_array($pick->team_id, $winningTeamIds)) {
+				$roundResult->continue = true;
+				$user->final_round_id  = $roundId;
+				$user->save();
+			} else {
+				$roundResult->continue = false;
+			}
+			$roundResult->save();
+		}
+
+		// complete round
+		$round = Round::find($roundId);
+		$round->completed = true;
+		$round->save();
 	}
 
 	/**
@@ -48,7 +84,8 @@ class CompleteRoundCommand extends Command {
 	protected function getArguments()
 	{
 		return array(
-		// 	array('example', InputArgument::REQUIRED, 'An example argument.'),
+			array('game_id', InputArgument::REQUIRED, 'ID of the Game.'),
+			array('round_id', InputArgument::REQUIRED, 'ID of the Round.'),
 		);
 	}
 
@@ -60,7 +97,6 @@ class CompleteRoundCommand extends Command {
 	protected function getOptions()
 	{
 		return array(
-		// 	array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
 		);
 	}
 
