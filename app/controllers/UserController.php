@@ -54,4 +54,9 @@ class UserController extends BaseController {
 		}
 
 	}
+
+	public function settings() {
+			return View::make('user/settings');
+	}
+	
 }

@@ -26,3 +26,5 @@ Route::get('/logout', 'UserController@logout');
 Route::group(array('before' => 'auth'), function() {
 	Route::get('/account', 'HomeController@myAccount');
 });
+
+Route::get('/settings', 'UserController@settings');
