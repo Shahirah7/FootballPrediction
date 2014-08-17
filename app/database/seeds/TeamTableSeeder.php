@@ -5,7 +5,8 @@ class TeamTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('teams')->delete();
+
+    	DB::table('teams')->truncate();
 
         $team = new Team();
 		$team->name = "Arsenal";
