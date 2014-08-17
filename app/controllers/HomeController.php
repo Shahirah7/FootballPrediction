@@ -29,7 +29,7 @@ class HomeController extends BaseController {
 		$games = Game::all();
 
 		$currentGame = $currentGamePlayers = $currentRound = 
-			$upcomingFixtures = $availableTeams = null;
+			$upcomingFixtures = $availableTeams = $stillInGame = null;
 
 		$madePrediction = false;
 
@@ -37,6 +37,13 @@ class HomeController extends BaseController {
 			$currentGame 		= $user->game()->first();
 			$currentGamePlayers = $currentGame->users()->getResults();
 			$currentRound 		= $currentGame->getCurrentRound();
+
+			if($currentRound->id > $user->final_round_id) {
+				$stillInGame = false;
+			} else {
+				$stillInGame = true;
+			} 
+
 			$upcomingFixtures 	= Fixture::where('round_id', '=', $currentRound->id)->get();
 			$availableTeams     = $user->getAvailableTeamsForRound($currentGame->id);
 
@@ -51,7 +58,8 @@ class HomeController extends BaseController {
 			'upcomingFixtures'	 => $upcomingFixtures,
 			'user'				 => $user,
 			'availableTeams'	 => $availableTeams,
-			'madePrediction'	 => $madePrediction
+			'madePrediction'	 => $madePrediction,
+			'stillInGame'		 => $stillInGame
 		));
 	}
 

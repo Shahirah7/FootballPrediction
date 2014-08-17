@@ -51,28 +51,33 @@
   				@if(!is_null($currentGame))
   				<div class="well">
   					<h3>Choose your prediction for this round</h3>
-  					@if(!$madePrediction)
-  						@if($currentRound->can_predict)
-	  					{{ Form::open(array('class' => 'form-inline', 'action' => 'GameController@makePrediction')) }}
-				    		<div class="form-group">
-	    						<label class="control-label">Make Prediction:</label>
-						    	<select name="team_id" class="form-control">
-						    		@if(count($availableTeams))
-							    		@foreach($availableTeams as $team)
-								 		<option value="{{ $team->id }}">{{ $team->name }}</option>
-										@endforeach
-									@endif
-								</select>
-							</div>
-				    				
-				    		<button class="btn btn-sm btn-primary">Select</button>
-				    	{{ Form::close() }}
+  					@if($stillInGame)
+	  					@if(!$madePrediction)
+	  						@if($currentRound->can_predict)
+		  					{{ Form::open(array('class' => 'form-inline', 'action' => 'GameController@makePrediction')) }}
+					    		<div class="form-group">
+		    						<label class="control-label">Make Prediction:</label>
+							    	<select name="team_id" class="form-control">
+							    		@if(count($availableTeams))
+								    		@foreach($availableTeams as $team)
+									 		<option value="{{ $team->id }}">{{ $team->name }}</option>
+											@endforeach
+										@endif
+									</select>
+								</div>
+					    				
+					    		<button class="btn btn-sm btn-primary">Select</button>
+					    	{{ Form::close() }}
+					    	@else
+					    		<p>Predictions are closed for this round</p>
+					    	@endif
 				    	@else
-				    		<p>Predictions are closed for this round</p>
-				    	@endif
-			    	@else
-			    		<p> You have already selected a team for this round.</p>
-				    @endif
+				    		<p> You have already selected a team for this round.</p>
+					    @endif
+					@else
+						<p>Sorry you have been eliminated from this game...</p>
+						<a href="{{ action('HomeController@myAccount') }}" class="btn btn-primary">Leave Game</a>
+					@endif
   				</div>
 
   				<div class="panel panel-default">
@@ -187,7 +192,7 @@
 								<tr>
 									<th>Player Name</th>
 									<th>Predictions</th>
-									<th>Round</th>
+									<th>Last Round</th>
 								</tr>
 							</thead>
 							<tbody>
