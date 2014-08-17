@@ -235,22 +235,10 @@
 	    					<h3 class="panel-title">Chat</h3>
 	 					</div>
 	  					<div class="panel-body">
-	    					Chat script goes here.
+	    					<div id="tlkio" data-channel="lastteamstanding" style="width:100%;height:400px;"></div><script async src="http://tlk.io/embed.js" type="text/javascript"></script>
 	  					</div>
 					</div>
 		  		</div>
 		  	</div>
     </div>
 @stop
-
-@section('javascript')
-<script>var __v='barc-user-husainfazel';</script>
-<script type="text/javascript"> 
-  (function(d) { 
-    var b = d.createElement("script"); b.type = "text/javascript"; b.async = true; 
-    b.src = ("https:" == d.location.protocol ? "https" : "http") + "://barc.com/js/libs/barc/barc.js"; 
-    var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(b, s); 
-  })(document); 
-</script>
-@stop
-   
