@@ -35,4 +35,12 @@ class Game extends Eloquent {
     		->orderBy('id', 'asc')->first();
     }
 
+    public function canUserJoin($userId) {
+        $result = DB::table('user_picks')
+            ->where('game_id', '=', $this->id)
+            ->where('user_id', '=', $userId)
+            ->count();
+
+        return ($result > 0) ? false : true;
+    }
 }

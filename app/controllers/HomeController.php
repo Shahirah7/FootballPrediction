@@ -33,6 +33,8 @@ class HomeController extends BaseController {
 
 		$madePrediction = false;
 
+		$availableGames = $user->getAvailableGames();
+
 		if($user->game_id) {
 			$currentGame 		= $user->game()->first();
 			$currentGamePlayers = $currentGame->users()->getResults();
@@ -59,7 +61,8 @@ class HomeController extends BaseController {
 			'user'				 => $user,
 			'availableTeams'	 => $availableTeams,
 			'madePrediction'	 => $madePrediction,
-			'stillInGame'		 => $stillInGame
+			'stillInGame'		 => $stillInGame,
+			'availableGames'	 => $availableGames
 		));
 	}
 

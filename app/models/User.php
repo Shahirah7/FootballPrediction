@@ -46,6 +46,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->belongsTo('Game');
     }
 
+    public function getAvailableGames() {
+        $gamesAlreadyPicked = DB::table('user_picks')
+            ->where('user_id', '=', $this->id)
+            ->groupBy('game_id')
+            ->lists('game_id');
+
+        if(count($gamesAlreadyPicked)) {
+            return DB::table('games')->whereNotIn('id', $gamesAlreadyPicked)->get();
+        } else {
+            return Game::all();
+        }
+
+    }
+
     public function getNumberOfPredictionsMade() {
     	return DB::table('user_picks')->where('user_id', '=', $this->id)->count();
     }

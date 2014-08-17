@@ -24,7 +24,20 @@ class GameController extends BaseController {
 		} else {
 			return Redirect::to('account')->with('errors', 'You cannot join this game!'); 
 		}
+	}
+
+	public function leaveGame() {
 		
+		$user = Auth::user();
+
+		if($user->game_id !== Input::get('game_id')) {
+			return Redirect::to('account')->with('errors', 'Trying to leave game you are not part of!'); 
+		}
+
+		$user->game_id = null;
+		$user->save();
+
+		return Redirect::to('account')->with('message', 'You have left the game!'); 
 
 	}
 

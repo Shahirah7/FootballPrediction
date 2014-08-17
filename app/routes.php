@@ -25,6 +25,7 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/account', 'HomeController@myAccount');
 
 	Route::post('/join_game', 'GameController@joinGame');
+	Route::post('/leave_game', 'GameController@leaveGame');
 	Route::post('/make_prediction', 'GameController@makePrediction');
 
 	Route::get('/settings', 'UserController@settings');

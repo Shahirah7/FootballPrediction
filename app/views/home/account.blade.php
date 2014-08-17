@@ -30,7 +30,7 @@
 			    				<div class="form-group">
     								<label class="control-label">Available Games:</label>
 								    	<select name="game_id" class="form-control">
-								    		@foreach($games as $game)
+								    		@foreach($availableGames as $game)
 									 		<option value="{{ $game->id }}">{{ $game->name }}</option>
 											@endforeach
 										</select>
@@ -76,7 +76,10 @@
 					    @endif
 					@else
 						<p>Sorry you have been eliminated from this game...</p>
-						<a href="{{ action('HomeController@myAccount') }}" class="btn btn-primary">Leave Game</a>
+						{{ Form::open(array('action' => 'GameController@leaveGame')) }}
+						<input type="hidden" name="game_id" value="{{ $currentGame->id }}"/>
+						<button class="btn btn-sm btn-primary">Leave Game</button>
+						{{ Form::close() }}
 					@endif
   				</div>
 
@@ -120,7 +123,7 @@
 
 				@endif
 
-				<div>
+				<!-- <div>
 					<div class="col-md-4 well">
 						<h3>Most Picked Team</h3>
 						<p>Lorem Ipsum</p>
@@ -134,7 +137,7 @@
 						<p>Lorem Ipsum</p>
 					</div>
 				</div>
-
+ -->
   			</div>
 
   			<div class="col-md-5">
@@ -153,6 +156,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php $usr = Auth::user();?>
 								@if(count($games))
 									@foreach($games as $game)
 									<tr>
@@ -166,11 +170,15 @@
 											@if($currentGame)
 												<a class="btn btn-sm btn-default" href="{{ action('GameController@viewGame', array('game_id' => $game->id)) }}">View</a>
 											@else
+												
 												<a class="btn btn-sm btn-default" href="{{ action('GameController@viewGame', array('game_id' => $game->id)) }}">View</a>
+												
+												@if($game->canUserJoin($usr->id))
 												{{ Form::open(array('class' => 'form-inline', 'action' => 'GameController@joinGame', 'style' => 'display: inline-block;')) }}
 												<button class="btn btn-sm btn-primary">Join</button>
 												<input type="hidden" name="game_id" value="{{ $game->id }}"/>
 												{{ Form::close() }}
+												@endif
 											@endif
 										</td>
 									</tr>
