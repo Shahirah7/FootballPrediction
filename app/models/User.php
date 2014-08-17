@@ -63,4 +63,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     	}
 
     }
+
+    public function hasMadePrediction($roundId) {
+        $result = DB::table('user_picks')
+            ->where('user_id', '=', $this->id)
+            ->where('round_id', '=', $roundId)
+            ->count();
+
+        return $result;
+
+    }
 }

@@ -31,12 +31,16 @@ class HomeController extends BaseController {
 		$currentGame = $currentGamePlayers = $currentRound = 
 			$upcomingFixtures = $availableTeams = null;
 
+		$madePrediction = false;
+
 		if($user->game_id) {
 			$currentGame 		= $user->game()->first();
 			$currentGamePlayers = $currentGame->users()->getResults();
 			$currentRound 		= $currentGame->getCurrentRound();
 			$upcomingFixtures 	= Fixture::where('round_id', '=', $currentRound->id)->get();
 			$availableTeams     = $user->getAvailableTeamsForRound($currentGame->id);
+
+			$madePrediction     = $user->hasMadePrediction($currentRound->id);
 		}
 
 		return View::make('home/account', array(
@@ -46,7 +50,8 @@ class HomeController extends BaseController {
 			'currentRound'		 => $currentRound,
 			'upcomingFixtures'	 => $upcomingFixtures,
 			'user'				 => $user,
-			'availableTeams'	 => $availableTeams
+			'availableTeams'	 => $availableTeams,
+			'madePrediction'	 => $madePrediction
 		));
 	}
 

@@ -21,10 +21,14 @@ Route::post('/login', 'UserController@doLogin');
 Route::get('/register', 'UserController@register');
 Route::post('/register', 'UserController@doRegister');
 
-Route::get('/logout', 'UserController@logout');
-
 Route::group(array('before' => 'auth'), function() {
 	Route::get('/account', 'HomeController@myAccount');
+
+	Route::post('/join_game', 'GameController@joinGame');
+	Route::post('/make_prediction', 'GameController@makePrediction');
+
+	Route::get('/settings', 'UserController@settings');
+	Route::get('/logout', 'UserController@logout');
 });
 
-Route::get('/settings', 'UserController@settings');
+

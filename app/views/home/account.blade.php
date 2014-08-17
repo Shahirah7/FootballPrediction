@@ -1,10 +1,18 @@
 @extends('layout.master')
 
-<?php $madePrediction = false ?>
-
 @section('content')
 
     <div class="starter-template clearfix">
+
+ @if(count($errors))
+            <div class="alert alert-danger" role="alert">
+                <h4>Sorry, there were errors!</h4>
+                <ul>
+                    <li>{{ $errors }}</li>
+                </ul>
+            </div>
+            @endif
+
         <div class="row">
         	<div class="col-md-12">
 	        	
@@ -18,10 +26,10 @@
 							<h4><span class="label label-info">Current Game: {{ $currentGame->name }}</span></h4>
 							<h4><span class="label label-primary">Current Round: {{ $currentRound->name }}</span></h4>
 			    		@else 
-			    			{{ Form::open(array('class' => 'form-inline', 'action' => 'UserController@doRegister')) }}
+			    			{{ Form::open(array('class' => 'form-inline', 'action' => 'GameController@joinGame')) }}
 			    				<div class="form-group">
     								<label class="control-label">Available Games:</label>
-								    	<select class="form-control">
+								    	<select name="game_id" class="form-control">
 								    		@foreach($games as $game)
 									 		<option value="{{ $game->id }}">{{ $game->name }}</option>
 											@endforeach
@@ -44,10 +52,10 @@
   				<div class="well">
   					<h3>Choose your prediction for this round</h3>
   					@if(!$madePrediction)
-	  					{{ Form::open(array('class' => 'form-inline', 'action' => 'UserController@doRegister')) }}
+	  					{{ Form::open(array('class' => 'form-inline', 'action' => 'GameController@makePrediction')) }}
 				    		<div class="form-group">
 	    						<label class="control-label">Make Prediction:</label>
-						    	<select class="form-control">
+						    	<select name="team_id" class="form-control">
 						    		@if(count($availableTeams))
 							    		@foreach($availableTeams as $team)
 								 		<option value="{{ $team->id }}">{{ $team->name }}</option>
@@ -141,12 +149,20 @@
 									<tr>
 										<td>
 											<strong>{{ $game->name }}</strong><br/>
+											{{ $game->getCurrentRound()->name }}<br/>
 											Created: {{ date('d/m/y', strtotime($game->created_at)) }}
 										</td>
 										<td>{{ $game->getNumberOfPlayers() }}</td>
 										<td>
+											@if($currentGame)
+												<a class="btn btn-sm btn-default" href="">View</a>
+											@else
 											<a class="btn btn-sm btn-default" href="">View</a>
-											<a class="btn btn-sm btn-primary" href="">Join</a>
+											{{ Form::open(array('class' => 'form-inline', 'action' => 'GameController@joinGame', 'style' => 'display: inline-block;')) }}
+											<button class="btn btn-sm btn-primary">Join</button>
+											<input type="hidden" name="game_id" value="{{ $game->id }}"/>
+											{{ Form::close() }}
+											@endif
 										</td>
 									</tr>
 									@endforeach
