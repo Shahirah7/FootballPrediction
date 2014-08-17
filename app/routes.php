@@ -31,5 +31,12 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/logout', 'UserController@logout');
 });
 
+Route::group(array('before' => 'admin'), function() {
+	Route::get('/admin/dashboard', 'AdminController@dashboard');
+
+
+	// Route::get('/logout', 'UserController@logout');
+});
+
 Route::get('/view_game/{game_id}', 'GameController@viewGame');
 

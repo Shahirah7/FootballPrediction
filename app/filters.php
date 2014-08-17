@@ -49,6 +49,38 @@ Route::filter('auth', function()
 });
 
 
+Route::filter('admin', function()
+{
+	// if guest, go back to login back - you're not logged in!!
+	if (Auth::guest())
+	{
+		if (Request::ajax())
+		{
+			return Response::make('Unauthorized', 401);
+		}
+		else
+		{
+			return Redirect::guest('login')->with('message', 'You are not logged in!');;
+		}
+	}
+
+	// other wise get the user and check if admin
+	$user = Auth::user();
+	if ($user->role !== 'admin')
+	{
+		if (Request::ajax())
+		{
+			return Response::make('Unauthorized', 401);
+		}
+		else
+		{
+			return Redirect::guest('/')->with('message', 'You do not have permissions to view this page!');;
+		}
+	}
+
+});
+
+
 Route::filter('auth.basic', function()
 {
 	return Auth::basic();

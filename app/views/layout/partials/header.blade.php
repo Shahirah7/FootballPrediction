@@ -23,6 +23,9 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ $user->name }} <span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">
                         <li><a href="{{ action('HomeController@myAccount') }}">My Account</a></li>
+                        @if($user->role == 'admin')
+                            <li><a href="{{ action('AdminController@dashboard') }}">Admin Panel</a></li>
+                        @endif
                         <li><a href="{{ action('UserController@logout') }}">Logout</a></li>
                     </ul>
                 </li>
