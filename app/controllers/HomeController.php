@@ -36,7 +36,7 @@ class HomeController extends BaseController {
 			$currentGamePlayers = $currentGame->users()->getResults();
 			$currentRound 		= $currentGame->getCurrentRound();
 			$upcomingFixtures 	= Fixture::where('round_id', '=', $currentRound->id)->get();
-			$availableTeams     = $user->getAvailableTeamsForRound($currentRound->id);
+			$availableTeams     = $user->getAvailableTeamsForRound($currentGame->id);
 		}
 
 		return View::make('home/account', array(

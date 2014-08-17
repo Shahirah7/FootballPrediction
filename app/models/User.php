@@ -50,10 +50,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     	return DB::table('user_picks')->where('user_id', '=', $this->id)->count();
     }
 
-    public function getAvailableTeamsForRound($roundId) {
+    public function getAvailableTeamsForRound($gameId) {
     	$teamsAlreadyPicked = DB::table('user_picks')
     		->where('user_id', '=', $this->id)
-    		->where('round_id', '=', $roundId)
+    		->where('game_id', '=', $gameId)
     		->lists('team_id');
 
     	if(count($teamsAlreadyPicked)) {
