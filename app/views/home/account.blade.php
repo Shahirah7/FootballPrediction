@@ -96,7 +96,7 @@
 				</div>
 				@else
 				<div class="jumbotron">
-					<h1>Join a game!</h1>
+					<h2>Join a game!</h2>
 					<p>Blah Blah Blah</p>
 					<p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
 				</div>
@@ -105,15 +105,15 @@
 
 				<div>
 					<div class="col-md-4 well">
-						<h2>Most Picked Team</h2>
+						<h3>Most Picked Team</h3>
 						<p>Lorem Ipsum</p>
 					</div>
 					<div class="col-md-4 well">
-						<h2>Most Predictions Per Round</h2>
+						<h3>Most Predictions (Round)</h3>
 						<p>Lorem Ipsum</p>
 					</div>
 					<div class="col-md-4 well">
-						<h2>Most Correct Predictions</h2>
+						<h3>Most Correct Predictions</h3>
 						<p>Lorem Ipsum</p>
 					</div>
 				</div>
