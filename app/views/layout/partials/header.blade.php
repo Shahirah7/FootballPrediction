@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Last Man Standing</a>
+            <a class="navbar-brand" href="/">Last Team Standing</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">

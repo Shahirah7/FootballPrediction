@@ -3,7 +3,7 @@
 @section('content')
     <div class="starter-template">
         <div class="jumbotron">
-			<h1>Last Man Standing</h1>
+			<h1>Last Team Standing</h1>
 		 	<p>A fun football prediction game...</p>
 		  	<p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
 		</div>
