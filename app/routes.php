@@ -31,4 +31,5 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/logout', 'UserController@logout');
 });
 
+Route::get('/view_game/{game_id}', 'GameController@viewGame');
 

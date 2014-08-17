@@ -155,13 +155,13 @@
 										<td>{{ $game->getNumberOfPlayers() }}</td>
 										<td>
 											@if($currentGame)
-												<a class="btn btn-sm btn-default" href="">View</a>
+												<a class="btn btn-sm btn-default" href="{{ action('GameController@viewGame', array('game_id' => $game->id)) }}">View</a>
 											@else
-											<a class="btn btn-sm btn-default" href="">View</a>
-											{{ Form::open(array('class' => 'form-inline', 'action' => 'GameController@joinGame', 'style' => 'display: inline-block;')) }}
-											<button class="btn btn-sm btn-primary">Join</button>
-											<input type="hidden" name="game_id" value="{{ $game->id }}"/>
-											{{ Form::close() }}
+												<a class="btn btn-sm btn-default" href="{{ action('GameController@viewGame', array('game_id' => $game->id)) }}">View</a>
+												{{ Form::open(array('class' => 'form-inline', 'action' => 'GameController@joinGame', 'style' => 'display: inline-block;')) }}
+												<button class="btn btn-sm btn-primary">Join</button>
+												<input type="hidden" name="game_id" value="{{ $game->id }}"/>
+												{{ Form::close() }}
 											@endif
 										</td>
 									</tr>

@@ -71,5 +71,20 @@ class GameController extends BaseController {
 		
 
 	}
+
+	public function viewGame($gameId) {
+
+		$games = Game::all();
+		
+		if($gameId) {
+			$currentGame 		= Game::find($gameId);
+			$currentGamePlayers = $currentGame->users()->getResults();
+		}
+
+		return View::make('home/viewgame', array(
+			'game'				 => $currentGame,
+			'currentGamePlayers' => $currentGamePlayers
+		));
+	}
 	
 }
