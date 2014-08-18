@@ -1,25 +1,27 @@
-## Laravel PHP Framework
+# Football Prediction Game
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Objectives
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+* Improve knowledge of PHP scripting language
+* Learn how to use an MVC (Model-View-Controller) Framework
+* Explore a variety of object oriented design patterns (e.g. Factory, Singleton, Facade and Database related patterns).
+* Gain a basic understanding of Linux server operations (deploying a web application, provisioning the LAMP stack).
+* Practice using version control system
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+## Description of project
+ 
+A football prediction game which allows users to be able to make predictions each weekend based on who they think will that week in the Premier League. Winners then proceed to the next round in which they pick another team which they have not previously chosen. This carries on each round till there is only one user left, which is then declared the overall winner. 
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Users who have lost a round can also join another game to play against users who were also eliminted.
 
-## Official Documentation
+## Solution
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+Built a web application with authentication to allow users to register accounts and login to view protected pages. Application was built using Laravel, one of the more popular PHP web frameworks.
 
-### Contributing To Laravel
+During the process of building this application, I learned how to use the Artisan command line tool, I learned about how the model-view-controller patterns works in the context of web applications. I also taught myself how to use blade templating and the Eloquent ORM.
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+I created an interface to allow users to join games, make predictions and view an plethora of statistics and game information. The front end was implemented using HTML5, I chose the Bootstrap CSS framework to allow me to rapidly prototype my interface. There is also a sprinkling of Javascript to add extra functionality to the interface.
 
-### License
+As well as creating a data model for the game, I created the models and business logic for implementing the prediction game. This involved creating command line scripts (in PHP) that would then be executed from a CRON script or called through the web application to process rounds, deal with eliminations and create new games.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Lastly I created an admin application to allow for managing instances of the game.
